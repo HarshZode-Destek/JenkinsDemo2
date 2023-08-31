@@ -10,6 +10,7 @@ pipeline{
                   sh '''
                     for fileName in $(find ${WORKSPACE} -type f -mmin -10 | grep -v ".git" | grep -v "Jenkinsfile")
                     do
+                    echo ${fileName}
                     fil=$(echo ${fileName} | sed 's/'"${JOB_NAME}"'/ /' | awk {'print $2'})
                     ssh root@${staging_server} "mkdir -p $(dirname ${fileName})" 
                     scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil}

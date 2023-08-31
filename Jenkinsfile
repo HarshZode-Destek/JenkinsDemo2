@@ -12,8 +12,7 @@ pipeline{
                     do
                     echo ${fileName}
                     fil=$(echo ${fileName} | sed 's/'"${JOB_NAME}"'/ /' | awk {'print $2'})
-                    ssh root@${staging_server} "mkdir -p $(dirname ${fileName})" 
-                    scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil}
+                    scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil} || scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html/
                     done
                 '''
                 }

@@ -17,7 +17,8 @@ pipeline{
                     if scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil}; then
                         echo "SCP command executed successfully"
                     else
-                        ssh root@${staging_server} "mkdir -p /var/www/html${directory} && scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil}"
+                        ssh root@${staging_server} "mkdir -p /var/www/html${directory}" 
+                        scp -r ${WORKSPACE}${fil} root@${staging_server}:/var/www/html${fil}
                     fi
                     done
                 '''

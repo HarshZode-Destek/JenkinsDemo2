@@ -15,16 +15,6 @@ pipeline {
                 }
             }
         }
-        stage('Cleanup') {
-            steps {
-                sshagent(['JenkinsServer']) {
-                    sh '''
-                        set -e
-                        find ${remoteDir} -type f ! -newermt now -delete
-                        find ${remoteDir} -type d -empty -delete
-                    '''
-                }
-            }
-        }
+        
     }
 }

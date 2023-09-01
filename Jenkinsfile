@@ -10,6 +10,7 @@ pipeline {
                 sshagent(['JenkinsServer']) {
                     sh '''
                         set -e
+                        sudo apt-get install rsync
                         rsync -avh ssh --progress --update --exclude=".git" --exclude="Jenkinsfile" ${WORKSPACE}/ --delete root@${staging_server}:${remoteDir}/
                     '''
                 }

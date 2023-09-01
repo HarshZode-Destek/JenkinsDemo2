@@ -10,7 +10,7 @@ pipeline {
                 sshagent(['JenkinsServer']) {
                     sh '''
                         set -e
-                        rsync -av --delete --exclude=".git" --exclude="Jenkinsfile" ${WORKSPACE}/ root@${staging_server}:${remoteDir}/
+                        rsync -avh ssh --progress --update --exclude=".git" --exclude="Jenkinsfile" ${WORKSPACE}/ --delete root@${staging_server}:${remoteDir}/
                     '''
                 }
             }
